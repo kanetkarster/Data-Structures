@@ -16,5 +16,6 @@ int main() {
 
     t.in_order();
     t.depth_first();
+    t.breadth_first();
 }
 

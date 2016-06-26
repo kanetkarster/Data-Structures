@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 template<class T> class BinaryTree;
 template<class T> class Node;
@@ -50,6 +51,31 @@ template<class T> class Node {
             }
             
             std::cout << data << ", ";
+        }
+
+        void breadth_first() {
+            std::queue<std::pair<Node<T>*,int>> bfs;
+            bfs.push(std::pair<Node<T>*, int>(this, 0));
+            int last_level = 0;
+            while (!bfs.empty()) {
+                auto node = bfs.front();
+                Node<T>* tmp = node.first;
+                int level = node.second;
+                
+                if (level != last_level) {
+                    std::cout << std::endl;
+                    last_level = level;
+                }
+                
+                std::cout << tmp->data << ", ";
+                
+                bfs.pop();
+                
+                if (tmp->left)
+                    bfs.push(std::pair<Node<T>*,int>(tmp->left,level+1));
+                if (tmp->right)
+                    bfs.push(std::pair<Node<T>*,int>(tmp->right,level+1));
+            }
         }
 
     friend class BinaryTree<T>;
@@ -104,10 +130,10 @@ template<class T> class BinaryTree {
     }
 
     void breadth_first() {
-        std::cout << "DFS ORDER" << std::endl;
+        std::cout << "BFS ORDER" << std::endl;
         std::cout << "---------" << std::endl;
 
-        root->depth_first();
+        root->breadth_first();
         
         std::cout << std::endl;
         std::cout << "---------" << std::endl;
