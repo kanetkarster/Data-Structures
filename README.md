@@ -1,7 +1,7 @@
 Data Structures
 ===============
 
-Various C++ Data Structures written with templates
+Various C++ and Java Data Structures written with templates/generics
 
 License
 -------
