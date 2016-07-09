@@ -11,6 +11,9 @@ public class HashMap<T extends Hashable> {
     HashMap(int length) {
         sz = length;
         ls = new ArrayList[sz];
+        for (int i=0; i<sz; i++) {
+            ls[i] = new ArrayList<>();
+        }
     }
 
     void insert(T data) {
@@ -25,7 +28,6 @@ public class HashMap<T extends Hashable> {
             if (val.equals(data)) {
                 return true;
             }
-            System.out.println(data);
         }
         return false;
     }
